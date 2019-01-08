@@ -5,12 +5,12 @@ include 'includes/nav.php';
 ?>
 <?php
 require_once('config.php');
-$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$link) {
   die("Cannot access db.");
 }
 
-$db = mysql_select_db(DB_DATABASE);
+$db = mysqli_select_db($link,DB_DATABASE);
 if(!$db) {
   die("Unable to select database");
 }
@@ -19,37 +19,37 @@ $products = array();
 if ( isset($_GET['search']) ) 
 {
   $keyword = trim($_GET['search']);
-  $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
+  $res = mysqli_query($link,"SELECT `tbl_product`.*,`tbl_category`.`cat_name`
           FROM `tbl_product`
           INNER JOIN `tbl_category`
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           WHERE `pd_name` LIKE '%".$keyword."%'
           ORDER BY `pd_id` DESC");
-  while ($row = mysql_fetch_object($res)) {
+  while ($row = mysqli_fetch_object($res)) {
     $products[] = $row;
   }
 }
 elseif ( isset($_GET['category']) ) 
 {
   $category = trim($_GET['category']);
-  $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
+  $res = mysqli_query($link,"SELECT `tbl_product`.*,`tbl_category`.`cat_name`
           FROM `tbl_product`
           INNER JOIN `tbl_category`
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           WHERE `tbl_product`.`cat_id`=".$category."
           ORDER BY `pd_id` DESC");
-  while ($row = mysql_fetch_object($res)) {
+  while ($row = mysqli_fetch_object($res)) {
     $products[] = $row;
   }
 }
 else
 {
-  $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
+  $res = mysqli_query($link,"SELECT `tbl_product`.*,`tbl_category`.`cat_name`
           FROM `tbl_product`
           INNER JOIN `tbl_category`
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           ORDER BY `pd_id` DESC");
-  while ($row = mysql_fetch_object($res)) {
+  while ($row = mysqli_fetch_object($res)) {
     $products[] = $row;
   }
 }
