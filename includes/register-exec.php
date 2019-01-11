@@ -100,7 +100,7 @@
 	//Create INSERT query
 	$qry = "INSERT INTO tbl_user(user_name, password, user_email, created_at, updated_at, user_is_admin) 
 			VALUES('$username','".md5($_POST['password'])."','$email','".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."', $is_admin)";
-	$result = @mysqli_query($qry);
+	$result = @mysqli_query($link, $qry);
 	
 	//Check whether the query was successful or not
 	if($result) {
