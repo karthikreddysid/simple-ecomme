@@ -12,7 +12,7 @@
 	$errflag = false;
 	
 	//Connect to mysql server
-	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 	if(!$link) {
 		die('Failed to connect to server: ' . mysqli_error($link));
 	}
@@ -29,7 +29,7 @@
 		if(get_magic_quotes_gpc()) {
 			$str = stripslashes($str);
 		}
-		$link1 = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+		$link1 = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 		return mysqli_real_escape_string($link1,$str);
 	}
 	
