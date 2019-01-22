@@ -19,7 +19,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 # CREATE USER 'ta'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'ta'@'%';
+GRANT ALL PRIVILEGES ON idukan . * TO 'ta'@'%';
 FLUSH PRIVILEGES;
 
 CREATE DATABASE IF NOT EXISTS idukan;
@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS `tbl_category`;
 CREATE TABLE `tbl_category` (
   `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(50) NOT NULL DEFAULT '',
-  `cat_description` varchar(200) NOT NULL DEFAULT '',
+  `cat_description` varchar(200) NOT NULL DEFAULT '',i
   PRIMARY KEY (`cat_id`),
   KEY `cat_name` (`cat_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
