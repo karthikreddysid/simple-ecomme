@@ -3,26 +3,26 @@ session_start();
 //Include database connection details
 require_once(__DIR__.'/../config.php');
 $user_id = $_SESSION['SESS_USER_ID'];
-$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 if (!$link) {
 	die("Cannot access db.");
 }
 
 
-$db = mysql_select_db(DB_DATABASE);
+$db = mysqli_select_db($link, DB_DATABASE);
 if(!$db) {
 	die("Unable to select database");
 }
 
-$res = mysql_query("SELECT * FROM tbl_user WHERE user_id=".$user_id." LIMIT 1");
-$user = mysql_fetch_assoc($res);
+$res = mysqli_query($link, "SELECT * FROM tbl_user WHERE user_id=".$user_id." LIMIT 1");
+$user = mysqli_fetch_assoc($res);
 
-$ord_res = mysql_query("SELECT `tbl_order`.*,GROUP_CONCAT(`pd_name` SEPARATOR ', ') as `products`
+$ord_res = mysqli_query($link, "SELECT `tbl_order`.*,GROUP_CONCAT(`pd_name` SEPARATOR ', ') as `products`
 						FROM `tbl_order`,`tbl_order_item`, `tbl_product`
 						WHERE `tbl_order`.`od_id` = `tbl_order_item`.`od_id` 
 						AND `tbl_product`.`pd_id` = `tbl_order_item`.`pd_id`
 						AND user_id=".$user_id." GROUP BY `od_id`");
-while ($row = mysql_fetch_object($ord_res)) {
+while ($row = mysqli_fetch_object($ord_res)) {
 	$orders[] = $row;
 }
 
@@ -55,7 +55,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 	}
 	//Create INSERT query
 	$qry = "UPDATE tbl_user SET password='".md5($_POST['password'])."', updated_at='".date("Y-m-d H:i:s")."' WHERE user_id=$user_id";
-	$result = @mysql_query($qry);
+	$result = @mysqli_query($link, $qry);
 	//Check whether the query was successful or not
 	if($result) {
 		$_SESSION['MSGS'] = array('<strong>Wola!</strong> Your password was changed successfully.');
