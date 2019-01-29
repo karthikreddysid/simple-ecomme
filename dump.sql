@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS `tbl_category`;
 CREATE TABLE `tbl_category` (
   `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(50) NOT NULL DEFAULT '',
-  `cat_description` varchar(200) NOT NULL DEFAULT '',i
+  `cat_description` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`cat_id`),
   KEY `cat_name` (`cat_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
