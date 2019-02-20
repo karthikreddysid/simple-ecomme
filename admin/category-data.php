@@ -2,23 +2,23 @@
 if(!isset($_SESSION)) session_start();
 //Include database connection details
 require_once(__DIR__.'/../config.php');
-$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$link) {
 	die("Cannot access db.");
 }
 
-$db = mysql_select_db(DB_DATABASE);
+$db = mysqli_select_db($link,DB_DATABASE);
 if(!$db) {
 	die("Unable to select database");
 }
 $categories;
 //get all the categories
-$res = mysql_query("SELECT count(`tbl_product`.`cat_id`) as `product_count`,`tbl_category`.*
+$res = mysqli_query($link,"SELECT count(`tbl_product`.`cat_id`) as `product_count`,`tbl_category`.*
 					FROM `tbl_category`
 					LEFT JOIN `tbl_product`
 					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
 					GROUP BY `tbl_category`.`cat_id`;");
-while ($row = mysql_fetch_object($res)) {
+while ($row = mysqli_fetch_assoc($res)) {
 	$categories[] = $row;
 }
 //handle new category request
