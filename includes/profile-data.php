@@ -63,7 +63,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 		header("location: ..\profile.php");
 		exit();
 	}else {
-		die("Query failed: ".mysql_error());
+		die("Query failed: ".mysqli_error());
 	}
 }
 ?>
