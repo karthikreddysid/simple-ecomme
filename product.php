@@ -8,23 +8,23 @@ if(!isset($_GET['id']))
 else {
 	//Include database connection details
 	require_once('config.php');
-	$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 	if (!$link) {
 		die("Cannot access db.");
 	}
 
-	$db = mysql_select_db(DB_DATABASE);
+	$db = mysqli_select_db($link,DB_DATABASE);
 	if(!$db) {
 		die("Unable to select database");
 	}
 	$products;
 	//get all the categories
-	$res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
+	$res = mysqli_query($link,"SELECT `tbl_product`.*,`tbl_category`.`cat_name`
 						FROM `tbl_product`
 						INNER JOIN `tbl_category`
 						ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
 						WHERE `pd_id`=".$_GET['id']);
-	while ($row = mysql_fetch_object($res)) {
+	while ($row = mysqli_fetch_object($res)) {
 		$product = $row;
 	}
 }
