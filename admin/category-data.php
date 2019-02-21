@@ -41,7 +41,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 	//Create INSERT query
 	$qry = "INSERT INTO `tbl_category` ( `cat_name`, `cat_description`)
 			VALUES ('".$catname."', '".$catdesc."');";
-	$result = @mysql_query($qry);
+	$result = @mysqli_query($link,$qry);
 	//Check whether the query was successful or not
 	if($result) {
 		$_SESSION['MSGS'] = array('<strong>Wola!</strong> Changes were successful.');
@@ -58,7 +58,7 @@ if(is_array($_GET) && count($_GET) > 0 && isset($_GET['delete'])) {
 
 	$qry = "DELETE FROM `tbl_category`
 			WHERE cat_id=".$catid;
-	$result = @mysql_query($qry);
+	$result = @mysqli_query($link,$qry);
 	//Check whether the query was successful or not
 	if($result) {
 		$_SESSION['MSGS'] = array('<strong>Wola!</strong> Changes were successful.');
