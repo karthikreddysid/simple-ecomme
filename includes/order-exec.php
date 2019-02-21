@@ -4,12 +4,12 @@
 	//Include database connection details
 	require_once(__DIR__.'/../config.php');
 
-	$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 	if (!$link) {
 		die("Cannot access db.");
 	}
 
-	$db = mysql_select_db(DB_DATABASE);
+	$db = mysqli_select_db($link,DB_DATABASE);
 	if(!$db) {
 		die("Unable to select database");
 	}
@@ -26,17 +26,17 @@
 			VALUES
 				( ".$user_id.", '".$od_date."', 'New', '".$od_name."', '".$od_address."', '".$od_city."', '".$od_postal_code."', '".$od_cost."');
 			";
-	$result = mysql_query($qry);
+	$result = mysqli_query($link,$qry);
 
-	$od_id = mysql_insert_id();
+	$od_id = mysqli_insert_id($link);
 
 	foreach($_SESSION['CART'] as $cart_item_ID => $cart_item)
 	{
 		$qry = "INSERT INTO `tbl_order_item` (`od_id`, `pd_id`, `od_qty`) VALUES (".$od_id.", ".$cart_item['pd_id'].", 1);";
-		$result = mysql_query($qry);
+		$result = mysqli_query($link,$qry);
 
 		$qry = "UPDATE `tbl_product` SET `tbl_product`.`pd_qty` = `tbl_product`.`pd_qty` - 1 WHERE pd_id=".$cart_item['pd_id'];
-		$result = mysql_query($qry);
+		$result = mysqli_query($link,$qry);
 	}
 
 	//Check whether the query was successful or not
@@ -47,6 +47,6 @@
 		header("location: ../profile.php");
 		exit();
 	} else {
-		die("Query failed: ".mysql_error());
+		die("Query failed: ".mysqli_error());
 	}
 ?>
