@@ -90,7 +90,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 		//Create INSERT query
 		$qry = "INSERT INTO `tbl_product` ( `cat_id`, `pd_name`, `pd_description`, `pd_price`, `pd_qty`, `pd_image`)
 				VALUES($category, '$proname', '$prodesc', $price, $quantity, '".$proimage["name"]."')";
-		$result = @mysql_query($qry);
+		$result = @mysqli_query($link,$qry);
 		//Check whether the query was successful or not
 		if($result) {
 			$_SESSION['MSGS'] = array('<strong>Wola!</strong> Changes were successful.');
