@@ -117,7 +117,7 @@ if(is_array($_GET) && count($_GET) > 0 && isset($_GET['delete'])) {
 
 	$qry = "DELETE FROM `tbl_product`
 			WHERE pd_id=".$pd_id;
-	$result = @mysql_query($qry);
+	$result = @mysqli_query($link,$qry);
 	//Check whether the query was successful or not
 	if($result) {
 		$_SESSION['MSGS'] = array('<strong>Wola!</strong> Changes were successful.');
