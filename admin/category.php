@@ -53,9 +53,9 @@ include_once 'category-data.php'; ?>
           foreach ($categories as $category) {
         ?>
           <tr>
-            <td><?php echo $category->cat_name ?></td>
-            <td><?php echo $category->cat_description ?></td>
-            <td class="text-center"><?php echo $category->product_count ?></td>
+            <td><?php echo $category["cat_name"] ?></td>
+            <td><?php echo $category["cat_description"] ?></td>
+            <td class="text-center"><?php echo $category["product_count"] ?></td>
             <td class="text-center"><a href="category-data.php?delete=<?php echo $category->cat_id ?>"><span class="glyphicon glyphicon-trash"> </span></a></td>
           </tr>
         <?php
