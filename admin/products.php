@@ -19,7 +19,7 @@ include_once 'products-data.php'; ?>
                       <option value="">----</option>
                       <?php
                         foreach ($categories as $category) {
-                          echo '<option value="'.$category->cat_id.'">'.$category->cat_name.'</option>';
+                          echo '<option value="'.$category["cat_id"].'">'.$category["cat_name"].'</option>';
                         }
                       ?>
                     </select>
