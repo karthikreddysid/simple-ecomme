@@ -110,13 +110,13 @@ include_once 'products-data.php'; ?>
           foreach ($products as $product) {
         ?>
           <tr>
-            <td><?php echo $product->pd_name ?></td>
-            <td><img src="../img/uploads/<?php echo $product->pd_image ?>" alt="<?php echo $product->pd_name ?>" style="max-width:140px;"></td>
-            <td><?php echo $product->pd_description ?></td>
-            <td><?php echo $product->cat_name ?></td>
-            <td class="text-center">&#8377; <?php echo $product->pd_price ?></td>
-            <td class="text-center"><?php echo $product->pd_qty ?></td>
-            <td class="text-center"><a href="products-data.php?delete=<?php echo $product->pd_id ?>"><span class="glyphicon glyphicon-trash"> </span></a></td>
+            <td><?php echo $product["pd_name"] ?></td>
+            <td><img src="../img/uploads/<?php echo $product["pd_image"] ?>" alt="<?php echo $product["pd_name"] ?>" style="max-width:140px;"></td>
+            <td><?php echo $product["pd_description"] ?></td>
+            <td><?php echo $product["cat_name"] ?></td>
+            <td class="text-center">&#8377; <?php echo $product["pd_price"] ?></td>
+            <td class="text-center"><?php echo $product["pd_qty"] ?></td>
+            <td class="text-center"><a href="products-data.php?delete=<?php echo $product["pd_id"] ?>"><span class="glyphicon glyphicon-trash"> </span></a></td>
           </tr>
         <?php
           }
