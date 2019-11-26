@@ -18,7 +18,13 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+#
+#
+#change in database hostname in config.php as define('DB_HOST', 'localhost:3306');
 # CREATE USER 'ta'@'%' IDENTIFIED BY 'password';
+# CREATE DATABASE IF NOT EXISTS idukan;
+# GRANT ALL PRIVILEGES ON idukan . * TO 'ta'@'%';
+# sudo mysql -u ta -p
 GRANT ALL PRIVILEGES ON idukan . * TO 'ta'@'%';
 FLUSH PRIVILEGES;
 
